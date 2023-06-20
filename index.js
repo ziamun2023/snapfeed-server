@@ -11,6 +11,7 @@ const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const connectTodb = require('./models/db');
 
 const app=express();
+app.use(express.json()); //to accept json
 const port= process.env.PORT || 5000  
 
 require('dotenv').config()
@@ -66,12 +67,7 @@ app.use(express.json())
 //   try {
 //     // Connect the client to the server	(optional starting in v4.7)
 //     // await client.connect();
-//     const db=client.db("musicClass");
-//     const favouriteClass=db.collection("carts") //favourite class
-
-//     const studentsCollection=db.collection("allStudents") //all user
-//     const classCollection=db.collection("allClass") // all class
-//     const allinstructorsDb=db.collection("instructor")
+  
 
 
 
@@ -80,14 +76,16 @@ app.use(express.json())
 // })
 
 
-// app.use('/api/user',userRoutes)
+app.use('/api/user',userRoutes)
 
 
+// app.use("/api/chat",chat)
+// app.post('/api/chat', async (req,res)=>{
+//     const response=body.req
+//     const result = await Users.inserOne
 
 
-
-
-
+// })
 
 
 
@@ -109,4 +107,10 @@ app.get('/',(req,res)=>{
 
 app.listen(port,()=>{
     console.log(`coffee server is running on port ${port}`)
-})
+})  // const db=client.db("musicClass");
+    // const favouriteClass=db.collection("carts") //favourite class
+
+    // const studentsCollection=db.collection("allStudents") //all user
+    // const classCollection=db.collection("allClass") // all class
+    // const allinstructorsDb=db.collection("instructor")
+    // const Users=db.collection("snapUser")
